@@ -33,20 +33,20 @@ with open("hidden_weapon_input_deterrence.csv") as csvfile:
 			Red = game.players.add("Red")
 
 			weapon_signal_accept = game.outcomes.add("Weapon Signal Accept")
-			weapon_signal_accept[0] = blue_start + blue_change_weapon - blue_signal_cost / 2 - red_start
-			weapon_signal_accept[1] = red_start - blue_start - blue_change_weapon
+			weapon_signal_accept[0] = blue_start - blue_signal_cost / 2 
+			weapon_signal_accept[1] = red_start 
 
 			weapon_nosignal_accept = game.outcomes.add("Weapon No Signal Accept")
-			weapon_nosignal_accept[0] = blue_start + blue_change_weapon - red_start
-			weapon_nosignal_accept[1] = red_start - blue_start - blue_change_weapon
+			weapon_nosignal_accept[0] = blue_start 
+			weapon_nosignal_accept[1] = red_start 
 
 			noweapon_signal_accept = game.outcomes.add("No Weapon Signal Accept")
-			noweapon_signal_accept[0] = blue_start - (blue_signal_cost) - red_start + blue_change_noweapon
-			noweapon_signal_accept[1] = red_start - blue_start
+			noweapon_signal_accept[0] = blue_start - blue_signal_cost
+			noweapon_signal_accept[1] = red_start 
 
 			noweapon_nosignal_accept = game.outcomes.add("No Weapon No Signal Accept")
-			noweapon_nosignal_accept[0] = blue_start - red_start + blue_change_noweapon
-			noweapon_nosignal_accept[1] = red_start - blue_start
+			noweapon_nosignal_accept[0] = blue_start 
+			noweapon_nosignal_accept[1] = red_start 
 
 			blue_wins_weapon_signal = game.outcomes.add("Blue Wins Weapon Signal")
 			blue_wins_weapon_signal[0] = win_value - blue_signal_cost / 2 - conflict_cost
