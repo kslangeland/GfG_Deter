@@ -6,7 +6,7 @@ import numpy as np
 solver = gambit.nash.ExternalEnumPureSolver()
 results = []
 
-with open("hidden_weapon_input.csv") as csvfile:
+with open("hidden_weapon_input_deterrence.csv") as csvfile:
 	reader = csv.reader(csvfile)
 	i = 1
 	for row in reader:
@@ -33,7 +33,7 @@ with open("hidden_weapon_input.csv") as csvfile:
 			Red = game.players.add("Red")
 
 			weapon_signal_accept = game.outcomes.add("Weapon Signal Accept")
-			weapon_signal_accept[0] = blue_start + blue_change_weapon - blue_signal_cost - red_start
+			weapon_signal_accept[0] = blue_start + blue_change_weapon - blue_signal_cost / 2 - red_start
 			weapon_signal_accept[1] = red_start - blue_start - blue_change_weapon
 
 			weapon_nosignal_accept = game.outcomes.add("Weapon No Signal Accept")
@@ -41,7 +41,7 @@ with open("hidden_weapon_input.csv") as csvfile:
 			weapon_nosignal_accept[1] = red_start - blue_start - blue_change_weapon
 
 			noweapon_signal_accept = game.outcomes.add("No Weapon Signal Accept")
-			noweapon_signal_accept[0] = blue_start - (blue_signal_cost / 2) - red_start + blue_change_noweapon
+			noweapon_signal_accept[0] = blue_start - (blue_signal_cost) - red_start + blue_change_noweapon
 			noweapon_signal_accept[1] = red_start - blue_start
 
 			noweapon_nosignal_accept = game.outcomes.add("No Weapon No Signal Accept")
@@ -49,7 +49,7 @@ with open("hidden_weapon_input.csv") as csvfile:
 			noweapon_nosignal_accept[1] = red_start - blue_start
 
 			blue_wins_weapon_signal = game.outcomes.add("Blue Wins Weapon Signal")
-			blue_wins_weapon_signal[0] = win_value - blue_signal_cost - conflict_cost
+			blue_wins_weapon_signal[0] = win_value - blue_signal_cost / 2 - conflict_cost
 			blue_wins_weapon_signal[1] = 0 - conflict_cost
 
 			blue_wins_weapon_nosignal = game.outcomes.add("Blue Wins Weapon No Signal")
@@ -57,7 +57,7 @@ with open("hidden_weapon_input.csv") as csvfile:
 			blue_wins_weapon_nosignal[1] = 0 - conflict_cost
 
 			blue_wins_noweapon_signal = game.outcomes.add("Blue Wins No Weapon Signal")
-			blue_wins_noweapon_signal[0] = win_value - blue_signal_cost / 2 - conflict_cost
+			blue_wins_noweapon_signal[0] = win_value - blue_signal_cost - conflict_cost
 			blue_wins_noweapon_signal[1] = 0 - conflict_cost
 
 			blue_wins_noweapon_nosignal = game.outcomes.add("Blue Wins No Weapon No Signal")
@@ -65,7 +65,7 @@ with open("hidden_weapon_input.csv") as csvfile:
 			blue_wins_noweapon_nosignal[1] = 0 - conflict_cost
 
 			red_wins_weapon_signal = game.outcomes.add("Red Wins Weapon Signal")
-			red_wins_weapon_signal[0] = 0 - conflict_cost - blue_signal_cost
+			red_wins_weapon_signal[0] = 0 - conflict_cost - blue_signal_cost / 2
 			red_wins_weapon_signal[1] = win_value - conflict_cost
 
 			red_wins_weapon_nosignal = game.outcomes.add("Red Wins Weapon No Signal")
@@ -73,7 +73,7 @@ with open("hidden_weapon_input.csv") as csvfile:
 			red_wins_weapon_nosignal[1] = win_value - conflict_cost
 
 			red_wins_noweapon_signal = game.outcomes.add("Red Wins No Weapon Signal")
-			red_wins_noweapon_signal[0] = 0 - conflict_cost - blue_signal_cost / 2
+			red_wins_noweapon_signal[0] = 0 - conflict_cost - blue_signal_cost 
 			red_wins_noweapon_signal[1] = win_value - conflict_cost
 
 			red_wins_noweapon_nosignal = game.outcomes.add("Red Wins No Weapon No Signal")
